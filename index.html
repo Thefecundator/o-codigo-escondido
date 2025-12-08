@@ -118,7 +118,7 @@
 
     <button id="share-button">Compartilhar meu resultado!</button>
 
-    <script>
+   <script>
         // JAVASCRIPT: LÓGICA DO JOGO AUTOMATIZADA (Corrigida)
         
         // --- FUNÇÃO DE GERAÇÃO DE SEMENTE (GARANTE QUE O DESAFIO É IGUAL PARA TODOS NO MESMO DIA) ---
@@ -200,7 +200,9 @@
         const input = document.getElementById('guess-input');
         const submitButton = document.getElementById('submit-button');
         const message = document.getElementById('message');
-        const shareButton = document.getElementById('shareButton');
+        
+        // CORRIGIDO: O ID correto é 'share-button'
+        const shareButton = document.getElementById('share-button'); 
 
         let attempts = 0;
         let gameOver = false;
@@ -255,13 +257,15 @@
         }
 
         function shareResult() {
-            const shareText = `🧠 O Código Escondido #${TODAY_DAY_NUMBER}\nDesvendado em ${attempts} tentativa(s) ✅\n\nQuero te desafiar! Tente você também:\nhttps://relaxed-profiterole-421d4e.netlify.app/`;
+            // URL do seu site
+            const siteUrl = 'https://relaxed-profiterole-421d4e.netlify.app/';
+            const shareText = `🧠 O Código Escondido #${TODAY_DAY_NUMBER}\nDesvendado em ${attempts} tentativa(s) ✅\n\nQuero te desafiar! Tente você também:\n${siteUrl}`;
             
             if (navigator.share) {
                 navigator.share({
                     title: 'O Código Escondido',
                     text: shareText,
-                    url: 'https://relaxed-profiterole-421d4e.netlify.app/'
+                    url: siteUrl
                 }).catch(error => console.error('Erro ao compartilhar', error));
             } else {
                 navigator.clipboard.writeText(shareText);
@@ -281,3 +285,4 @@
     </script>
 </body>
 </html>
+
