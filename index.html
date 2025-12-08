@@ -7,7 +7,7 @@
      crossorigin="anonymous"></script>
     <title>O Código Escondido - Desafio Diário</title>
     <style>
-        /* CSS Minimalista */
+        /* O CSS foi simplificado, removendo as regras dos placeholders */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f0f0f0;
@@ -17,19 +17,6 @@
             align-items: center;
             padding: 20px;
             margin: 0;
-        }
-        .ads-placeholder {
-            width: 100%;
-            max-width: 700px;
-            height: 90px;
-            background-color: #ccc;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 14px;
-            color: #555;
-            border-radius: 5px;
         }
         h1 {
             font-size: 24px;
@@ -115,22 +102,6 @@
 </head>
 <body>
 
-    <div class="ads-placeholder">
-        [Aqui entrará o código do Google AdSense (topo)]
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2246688277356169"
-     crossorigin="anonymous"></script>
-<!-- Topo_oculto -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2246688277356169"
-     data-ad-slot="5255202818"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-    </div>
-
     <h1>O Código Escondido</h1>
     <p id="description">Desvende a regra secreta que rege esta Matriz 3x3. Qual é o número que falta no centro?</p>
 
@@ -146,22 +117,6 @@
 
     <button id="share-button">Compartilhar meu resultado!</button>
     
-    <div class="ads-placeholder" style="margin-top: 20px; height: 60px;">
-        [Aqui entrará o código do Google AdSense (rodapé)]
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2246688277356169"
-     crossorigin="anonymous"></script>
-<!-- rodape_oculto -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2246688277356169"
-     data-ad-slot="3745119524"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-    </div>
-
     <script>
         // JAVASCRIPT: LÓGICA DO JOGO
         
@@ -174,8 +129,8 @@
             2, 9, 11
         ];
         
-        const CORRECT_ANSWER = 13; // A Regra de hoje: O centro é a soma dos vizinhos menos 20. (Apenas um exemplo)
-        const TODAY_DAY_NUMBER = 1; // Mude este número todo dia (0, 1, 2, 3...)
+        const CORRECT_ANSWER = 13; 
+        const TODAY_DAY_NUMBER = 1; 
         // ------------------------------------
 
         const board = document.getElementById('game-board');
@@ -268,6 +223,4 @@
         initializeBoard();
     </script>
 </body>
-
 </html>
-
