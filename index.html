@@ -118,91 +118,28 @@
 
     <button id="share-button">Compartilhar meu resultado!</button>
 
-   <script>
-        // JAVASCRIPT: LÓGICA DO JOGO AUTOMATIZADA (Corrigida)
+    <script>
+        // JAVASCRIPT: LÓGICA DO JOGO
         
-        // --- FUNÇÃO DE GERAÇÃO DE SEMENTE (GARANTE QUE O DESAFIO É IGUAL PARA TODOS NO MESMO DIA) ---
-        function getDailySeed() {
-            const today = new Date();
-            const yyyy = today.getFullYear();
-            const mm = String(today.getMonth() + 1).padStart(2, '0');
-            const dd = String(today.getDate()).padStart(2, '0');
-            
-            return parseInt(`${yyyy}${mm}${dd}`);
-        }
-
-        const DAILY_SEED = getDailySeed();
-        const TODAY_DAY_NUMBER = DAILY_SEED;
-
-        // Funções para gerar números pseudo-aleatórios consistentes
-        let seed = DAILY_SEED;
-        function seededRandom() {
-            seed = (seed * 9301 + 49297) % 233280;
-            return seed / 233280;
-        }
-
-        function generateUniqueNumbers() {
-            const numbers = [];
-            while (numbers.length < 8) {
-                // Gera números entre 1 e 40
-                const num = Math.floor(seededRandom() * 40) + 1;
-                if (numbers.indexOf(num) === -1) {
-                    numbers.push(num);
-                }
-            }
-            return numbers;
-        }
+        // --- CHAVE DE ATUALIZAÇÃO DIÁRIA ---
+        // RETORNANDO PARA O DESAFIO FIXO TESTADO (RESPOSTA 13)
+        // ISSO GARANTE QUE O JOGO FUNCIONE ENQUANTO AGUARDAMOS O ADSENSE
         
-        // --- GERAÇÃO DA MATRIZ DIÁRIA ---
-        const uniqueNumbers = generateUniqueNumbers();
-        const matrixNumbers = [
-            uniqueNumbers[0], uniqueNumbers[1], uniqueNumbers[2],
-            uniqueNumbers[3], '?', uniqueNumbers[4],
-            uniqueNumbers[5], uniqueNumbers[6], uniqueNumbers[7]
+        const DAILY_MATRIX = [
+            12, 5, 7,  
+            10, '?', 3, 
+            2, 9, 11
         ];
         
-        // Variáveis de fácil acesso
-        const A = matrixNumbers[0]; 
-        const B = matrixNumbers[1];
-        const C = matrixNumbers[2];
-        const D = matrixNumbers[3];
-        const F = matrixNumbers[4];
-        const G = matrixNumbers[5];
-        const H = matrixNumbers[6];
-        const I = matrixNumbers[7];
+        const CORRECT_ANSWER = 13; 
+        const TODAY_DAY_NUMBER = 1; 
+        // ------------------------------------
 
-        // --- AS REGRAS LÓGICAS ---
-        const ruleSelector = DAILY_SEED % 5;
-
-        let calculatedAnswer;
-        
-        if (ruleSelector === 0) {
-            calculatedAnswer = (A + C + G + I) + Math.abs(B - H);
-        } 
-        else if (ruleSelector === 1) {
-            calculatedAnswer = Math.abs((A + I) - (C + G)) + D;
-        }
-        else if (ruleSelector === 2) {
-            calculatedAnswer = (A + D + G) * F;
-        }
-        else if (ruleSelector === 3) {
-            calculatedAnswer = Math.floor((B + D + F + H) + (A + C) / 2);
-        }
-        else {
-            calculatedAnswer = Math.abs((A + B + C) - (G + H + I)) + D;
-        }
-
-        const CORRECT_ANSWER = Math.round(calculatedAnswer); 
-        const DAILY_MATRIX = matrixNumbers;
-
-        // --- Resto do Código do Jogo ---
         const board = document.getElementById('game-board');
         const input = document.getElementById('guess-input');
         const submitButton = document.getElementById('submit-button');
         const message = document.getElementById('message');
-        
-        // CORRIGIDO: O ID correto é 'share-button'
-        const shareButton = document.getElementById('share-button'); 
+        const shareButton = document.getElementById('share-button');
 
         let attempts = 0;
         let gameOver = false;
@@ -233,10 +170,12 @@
             attempts++;
 
             if (guess === CORRECT_ANSWER) {
+                // ACERTOU!
                 message.textContent = `🎉 Código Desvendado! Você acertou em ${attempts} tentativa(s).`;
                 message.style.color = '#2ecc71';
                 endGame(guess);
             } else {
+                // ERROU!
                 message.textContent = `❌ Tente novamente. (${attempts} tentativa(s)).`;
                 message.style.color = '#e74c3c';
             }
@@ -248,16 +187,17 @@
             submitButton.style.display = 'none';
             input.style.display = 'none';
             
+            // Revela a resposta na matriz
             const resultCell = document.getElementById('result-cell');
             resultCell.textContent = correctValue;
             resultCell.style.backgroundColor = '#2ecc71';
             resultCell.style.color = 'white';
 
+            // Mostra o botão de compartilhar
             shareButton.style.display = 'block';
         }
 
         function shareResult() {
-            // URL do seu site
             const siteUrl = 'https://relaxed-profiterole-421d4e.netlify.app/';
             const shareText = `🧠 O Código Escondido #${TODAY_DAY_NUMBER}\nDesvendado em ${attempts} tentativa(s) ✅\n\nQuero te desafiar! Tente você também:\n${siteUrl}`;
             
@@ -285,4 +225,3 @@
     </script>
 </body>
 </html>
-
